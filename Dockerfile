@@ -1,5 +1,5 @@
 # Tips for choosing a base image
-# Should have python 3.8, curl, wget, zip, unzip, jq
+# Should have python 3.8, curl, wget, zip, unzip, jq, gcc
 FROM python:3.8-buster
 
 # docker build --build-arg SHIFTLEFT_ACCESS_TOKEN=$SHIFTLEFT_ACCESS_TOKEN
@@ -20,4 +20,3 @@ RUN python3 -m venv .venv \
 
 # Perform sl analysis
 RUN ./sl analyze --app flask-webgoat-docker --tag branch=$BRANCH --python --cpg --godmodeon .
-
