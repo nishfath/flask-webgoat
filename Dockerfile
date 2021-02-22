@@ -1,4 +1,6 @@
-FROM python:3.8-slim
+# Tips for choosing a base image
+# Should have python 3.8, curl, wget, zip, unzip, jq
+FROM python:3.8-buster
 
 # docker build --build-arg SHIFTLEFT_ACCESS_TOKEN=$SHIFTLEFT_ACCESS_TOKEN
 ARG SHIFTLEFT_ACCESS_TOKEN
