@@ -21,7 +21,7 @@ jobs:
     - name: Analyze with Inspect
       run: |
         pip3 install -r requirements.txt
-        ${GITHUB_WORKSPACE}/sl analyze --verbose --wait --app flask-webgoat --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --python --cpg --beta . -- -l debug -t all
+        ${GITHUB_WORKSPACE}/sl analyze --verbose --force --wait --app flask-webgoat --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --python --cpg --beta . -- -l debug -t all
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
 
