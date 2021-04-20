@@ -14,9 +14,6 @@ jobs:
     - name: Download ShiftLeft cli
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -24,7 +21,7 @@ jobs:
     - name: Analyze with Inspect
       run: |
         pip3 install -r requirements.txt
-        ${GITHUB_WORKSPACE}/sl analyze --wait --app flask-webgoat --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --python --cpg --beta .
+        ${GITHUB_WORKSPACE}/sl analyze --verbose --wait --app flask-webgoat --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --python --cpg --beta . -- -l debug -t all
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
 
