@@ -27,7 +27,7 @@ jobs:
         . .venv/bin/activate
         pip install --upgrade setuptools wheel
         pip install -r requirements.txt
-        ${GITHUB_WORKSPACE}/sl analyze --app flask-webgoat --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --python --cpg --godmodeon .
+        ${GITHUB_WORKSPACE}/sl analyze --wait --app flask-webgoat --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --python --cpg --beta .
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
 
