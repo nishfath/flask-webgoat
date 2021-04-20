@@ -1,0 +1,23 @@
+name: Analyze with ShiftLeft NG SAST on Mac
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  NGSAST-Mac-Build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Download ShiftLeft cli
+      run: |
+        curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl
+    - name: Analyze with NG SAST
+      run: |
+        pip3 install -r requirements.txt
+        ${GITHUB_WORKSPACE}/sl analyze --wait --app flask-webgoat-mac --tag branch=${GITHUB_REF} --python --cpg --beta .
+      env:
+        SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
