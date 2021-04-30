@@ -19,6 +19,6 @@ jobs:
     - name: Analyze with NG SAST
       run: |
         pip3 install -r requirements.txt
-        .\sl analyze --wait --verbose --app flask-webgoat-win --tag branch=${GITHUB_REF} --python --cpg --beta . -- -l debug -t all
+        .\sl analyze --wait --app flask-webgoat-win --tag branch=${GITHUB_REF} --python --cpg .
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
