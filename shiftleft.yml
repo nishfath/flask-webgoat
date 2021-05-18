@@ -9,3 +9,7 @@ build_rules:
       - SEVERITY_MEDIUM_IMPACT
       - SEVERITY_HIGH_IMPACT
     threshold: 0
+  - id: owasp-build-rule  
+    owasp_category:
+      - a1-injection
+    threshold: 4  
